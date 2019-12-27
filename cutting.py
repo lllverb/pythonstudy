@@ -5,15 +5,15 @@ import cv2
 # import numpy as np
 
 # 先ほど集めてきた画像データのあるディレクトリ
-input_data_path = "./myphotos/"
+input_data_path = "./cutted_myphotos/"
 # 切り抜いた画像の保存先ディレクトリ(予めディレクトリを作っておいてください)
-save_path = "./cutted_myphotos/"
+save_path = "./cutted2_myphotos/"
 # OpenCVのデフォルトの分類器のpath。(https://github.com/opencv/opencv/blob/master/data/haarcascades/haarcascade_frontalface_default.xmlのファイルを使う)
 cascade_path = "/usr/local/Cellar/opencv/4.1.2/share/opencv4/haarcascades/haarcascade_frontalface_default.xml"
 faceCascade = cv2.CascadeClassifier(cascade_path)
 
 # 収集した画像の枚数(任意で変更)
-image_count = 286
+image_count = 226
 # 顔検知に成功した数(デフォルトで0を指定)
 face_detect_count = 0
 
@@ -40,7 +40,7 @@ for i in range(image_count):
             w = rect[2]
             h = rect[3]
             cv2.imwrite(
-                save_path + "cutted_daiki" + str(face_detect_count) + ".jpg",
+                save_path + "cutted2_daiki" + str(face_detect_count) + ".jpg",
                 img[y : y + h, x : x + w],
             )
             face_detect_count += 1
