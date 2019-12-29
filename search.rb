@@ -30,7 +30,7 @@ class Scraper
       # スクレイピングするときのマナー。ちょっと待つ
       sleep(5)
     end
-# エレメンツの中にiuscクラスを持つやつ探してぶち込む
+    # エレメンツの中にiuscクラスを持つやつ探してぶち込む
     elements = driver.find_elements(:class, "iusc")
     @array = []
     elements.each do |element|
@@ -79,11 +79,16 @@ end
 
 if __FILE__ == $0
   keywords = {"yamada" => "山田孝之",
-              "kubota" => "窪田正孝", 
-              "sakurai" => "櫻井翔", 
-              "kurokawa" => "クロちゃん", 
-              "matsumoto" => "松本人志", 
-              "abe" => "阿部寛"
+              "kubota" => "窪田正孝",
+              "chiba" => "千葉雄大",
+              "sakurai" => "櫻井翔",
+              "yoshizawa" => "吉沢亮",
+              "shiraishi" => "白石麻衣",
+              "ishihara" => "石原さとみ",
+              "nakajo" => "中条あやみ",
+              "imada" => "今田美桜",
+              "hashimoto" => "橋本環奈",
+              "hirose" => "広瀬すず"
   }
   keywords.each do |prefix, query|
     p prefix
