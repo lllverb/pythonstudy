@@ -25,10 +25,10 @@ class Scraper
         current_count = driver.find_elements(:class, 'iusc').length
         # スクレイピングするときのマナー。ちょっと待つ
         until current_count < driver.find_elements(:class, 'iusc').length
-          sleep(3)
+          # sleep(3)
         end
       # スクレイピングするときのマナー。ちょっと待つ
-      sleep(5)
+      # sleep(5)
     end
     # エレメンツの中にiuscクラスを持つやつ探してぶち込む
     elements = driver.find_elements(:class, "iusc")
@@ -64,7 +64,7 @@ class Scraper
         filepath = dirname + "/" + filename
         open(filepath, "wb") do |f|
           open(url.encode("utf-8", invalid: :replace, undef: :replace)) do |data|
-            sleep(2)
+            # sleep(2)
             f.write(data.read)
           end
         end
@@ -83,15 +83,15 @@ if __FILE__ == $0
               # "chiba" => "千葉雄大",
               # "sakurai" => "櫻井翔",
               # "yoshizawa" => "吉沢亮",
+              # "suda" => "菅田将暉",
+              # "mocomichi" => "速水もこみち",
               # "shiraishi" => "白石麻衣",
               # "ishihara" => "石原さとみ",
               # "nakajo" => "中条あやみ",
               # "imada" => "今田美桜",
               # "hashimoto" => "橋本環奈",
               # "hirose" => "広瀬すず",
-              # "suda" => "菅田将暉",
-              "mocomichi" => "速水もこみち"
-  }
+            }
   keywords.each do |prefix, query|
     p prefix
     p query
