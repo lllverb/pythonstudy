@@ -1,8 +1,8 @@
 import os
 import glob
 
-path = "./cutted_myphotos"
+path = "./imada_img"
 files = glob.glob(path + "/*")
 
 for i, f in enumerate(files, 1):
-    os.rename(f, os.path.join(path, "daiki_" + str(i) + ".jpg"))
+    os.rename(f, os.path.join(path, "imada_" + str(i) + ".jpg"))

@@ -54,7 +54,7 @@ class Scraper
         if /\.(jpg)$/ =~ url
           filename = "#{@prefix}_#{i}.jpg"
         else
-          filename = "#{@prefix}_#{i}.png"
+          filename = "#{@prefix}_#{i}.jpg"
         end
         p filename + " << " + url
         # dirなければ作成、
@@ -78,17 +78,18 @@ class Scraper
 end
 
 if __FILE__ == $0
-  keywords = {"yamada" => "山田孝之",
-              "kubota" => "窪田正孝",
-              "chiba" => "千葉雄大",
-              "sakurai" => "櫻井翔",
-              "yoshizawa" => "吉沢亮",
-              "shiraishi" => "白石麻衣",
-              "ishihara" => "石原さとみ",
-              "nakajo" => "中条あやみ",
-              "imada" => "今田美桜",
-              "hashimoto" => "橋本環奈",
-              "hirose" => "広瀬すず"
+  keywords = { #"yamada" => "山田孝之",
+              # "kubota" => "窪田正孝",
+              # "chiba" => "千葉雄大",
+              # "sakurai" => "櫻井翔",
+              # "yoshizawa" => "吉沢亮",
+              # "shiraishi" => "白石麻衣",
+              # "ishihara" => "石原さとみ",
+              # "nakajo" => "中条あやみ",
+              # "imada" => "今田美桜",
+              # "hashimoto" => "橋本環奈",
+              # "hirose" => "広瀬すず",
+              "suda" => "菅田将暉"
   }
   keywords.each do |prefix, query|
     p prefix
