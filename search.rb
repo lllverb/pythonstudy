@@ -89,7 +89,8 @@ if __FILE__ == $0
               # "imada" => "今田美桜",
               # "hashimoto" => "橋本環奈",
               # "hirose" => "広瀬すず",
-              "suda" => "菅田将暉"
+              # "suda" => "菅田将暉",
+              "mocomichi" => "速水もこみち"
   }
   keywords.each do |prefix, query|
     p prefix
