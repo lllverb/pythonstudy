@@ -37,15 +37,15 @@ for i in range(image_count):
             # )
             # cv2.imwrite("detected.jpg", img)
             # ////////////////////////////////
-            x = rect[0]
-            y = rect[1]
-            w = rect[2]
-            h = rect[3]
-            cv2.imwrite(
-                save_path + "mocomichi" + str(face_detect_count) + ".jpg",
-                img[y : y + h, x : x + w],
-            )
-            face_detect_count += 1
+            # x = rect[0]
+            # y = rect[1]
+            # w = rect[2]
+            # h = rect[3]
+            # cv2.imwrite(
+            #     save_path + "mocomichi" + str(face_detect_count) + ".jpg",
+            #     img[y : y + h, x : x + w],
+            # )
+            # face_detect_count += 1
             print(i)
     else:
         print("image" + str(i) + ":NoFace")
