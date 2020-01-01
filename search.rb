@@ -88,7 +88,7 @@ if __FILE__ == $0
               # "shiraishi" => "白石麻衣",
               # "ishihara" => "石原さとみ",
               # "nakajo" => "中条あやみ",
-              # "imada" => "今田美桜",
+              "imada" => "今田美桜",
               # "hashimoto" => "橋本環奈",
               # "hirose" => "広瀬すず",
             }

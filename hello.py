@@ -1,5 +1,7 @@
-import tensorflow as tf
+import cv2
 
-hello = tf.constant("Hello")
-sess = tf.Session()
-print(sess.run(hello))
+img = cv2.imread(
+    "/Users/lllverb/Desktop/pythonstudy/tensorflow/data/train/chiba/chiba_cutted_145.jpg",
+    0,
+)
+print(img)

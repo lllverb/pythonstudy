@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# import sys
 import cv2
-
-# import random
 import numpy as np
-import tensorflow as tf
-import tensorflow.python.platform
+
+# import tensorflow as tf
+import tensorflow.compat.v1 as tf
+
+# import tensorflow.python.platform
 
 # 識別ラベルの数(今回は3つ)
 NUM_CLASSES = 3
@@ -156,7 +156,7 @@ def accuracy(logits, labels):
     correct_prediction = tf.equal(tf.argmax(logits, 1), tf.argmax(labels, 1))
     # booleanのcorrect_predictionをfloatに直して正解率の算出
     # false:0,true:1に変換して計算する
-    accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+    accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
     # TensorBoardで表示する様設定
     tf.summary.scalar("accuracy", accuracy)
     return accuracy
@@ -173,10 +173,8 @@ if __name__ == "__main__":
         # 改行を除いてスペース区切りにする
         line = line.rstrip()
         l = line.split()
-        print(l[0])
         # データを読み込んで28x28に縮小
         img = cv2.imread(l[0])
-        print(img)
         img = cv2.resize(img, (IMAGE_SIZE, IMAGE_SIZE))
         # 一列にした後、0-1のfloat値にする
         train_image.append(img.flatten().astype(np.float32) / 255.0)
@@ -209,12 +207,12 @@ if __name__ == "__main__":
     # TensorBoardのグラフに出力するスコープを指定
     with tf.Graph().as_default():
         # 画像を入れるためのTensor(28*28*3(IMAGE_PIXELS)次元の画像が任意の枚数(None)分はいる)
-        images_placeholder = tf.placeholder(tf.float32, [None, IMAGE_PIXELS])
-        # images_placeholder = np.reshape(images_placeholder, (-1, 2352))
+        images_placeholder = tf.placeholder("float", shape=(None, IMAGE_PIXELS))
         # ラベルを入れるためのTensor(3(NUM_CLASSES)次元のラベルが任意の枚数(None)分入る)
-        labels_placeholder = tf.placeholder(tf.float32, [None, NUM_CLASSES])
+        labels_placeholder = tf.placeholder("float", shape=(None, NUM_CLASSES))
         # dropout率を入れる仮のTensor
-        keep_prob = tf.placeholder(tf.float32)
+        keep_prob = tf.placeholder("float")
+
         # inference()を呼び出してモデルを作る
         logits = inference(images_placeholder, keep_prob)
         # loss()を呼び出して損失を計算
@@ -229,7 +227,7 @@ if __name__ == "__main__":
         # Sessionの作成(TensorFlowの計算は絶対Sessionの中でやらなきゃだめ)
         sess = tf.Session()
         # 変数の初期化(Sessionを開始したらまず初期化)
-        sess.run(tf.global_variables_initializer())
+        sess.run(tf.initialize_all_variables())
         # TensorBoard表示の設定(TensorBoardの宣言的な?)
         summary_op = tf.summary.merge_all()
         # train_dirでTensorBoardログを出力するpathを指定
@@ -237,7 +235,7 @@ if __name__ == "__main__":
 
         # 実際にmax_stepの回数だけ訓練の実行していく
         for step in range(FLAGS.max_steps):
-            for i in np.arange(len(train_image) / FLAGS.batch_size):
+            for i in range(len(train_image) // FLAGS.batch_size):
                 # batch_size分の画像に対して訓練の実行
                 batch = FLAGS.batch_size * i
                 # feed_dictでplaceholderに入れるデータを指定する
@@ -292,4 +290,3 @@ if __name__ == "__main__":
     # データを学習して最終的に出来上がったモデルを保存
     # "model.ckpt"は出力されるファイル名
     save_path = saver.save(sess, "model.ckpt")
-
