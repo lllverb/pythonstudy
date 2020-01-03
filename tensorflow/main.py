@@ -6,7 +6,7 @@ import numpy as np
 # import tensorflow as tf
 import tensorflow.compat.v1 as tf
 
-# import tensorflow.python.platform
+import tensorflow.python.platform
 
 # 識別ラベルの数(今回は3つ)
 NUM_CLASSES = 3
@@ -227,7 +227,7 @@ if __name__ == "__main__":
         # Sessionの作成(TensorFlowの計算は絶対Sessionの中でやらなきゃだめ)
         sess = tf.Session()
         # 変数の初期化(Sessionを開始したらまず初期化)
-        sess.run(tf.initialize_all_variables())
+        sess.run(tf.global_variables_initializer())
         # TensorBoard表示の設定(TensorBoardの宣言的な?)
         summary_op = tf.summary.merge_all()
         # train_dirでTensorBoardログを出力するpathを指定
@@ -286,6 +286,9 @@ if __name__ == "__main__":
             },
         )
     )
+
+    print(sess)
+    print(type(sess))
 
     # データを学習して最終的に出来上がったモデルを保存
     # "model.ckpt"は出力されるファイル名
