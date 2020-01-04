@@ -76,7 +76,7 @@ class MyModel:
                 self.x_train,
                 self.y_train,
                 batch_size=64,
-                epochs=10,
+                epochs=50,
                 validation_split=0.2,
             )
             model.save_weights(self.hdf5_file)
@@ -89,7 +89,6 @@ class MyModel:
             # グラフ描画
             loss = fit.history["loss"]
             val_loss = fit.history["val_loss"]
-
             nb_epoch = len(loss)
             plt.plot(range(nb_epoch), loss, marker=".", label="loss")
             plt.plot(range(nb_epoch), val_loss, marker=".", label="val_loss")

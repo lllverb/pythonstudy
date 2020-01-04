@@ -1,8 +1,24 @@
-# import os
-# import glob
+import glob
+import os
+import shutil
 
-# path = "./cutted/yoshizawa_cutted"
-# files = glob.glob(path + "/*")
 
-# for i, f in enumerate(files, 1):
-#     os.rename(f, os.path.join(path, "yoshizawa_cutted_" + str(i) + ".jpg"))
+def rename(name, image_format):
+    path = name + "/*"
+    i = 1
+    files = glob.glob(path)
+
+    for file in files:
+        os.rename(file, +name + "/" + name + "_" + str(i) + image_format)
+        i += 1
+
+
+def movedir(name):
+    shutil.move(name, "keras/train_all")
+
+
+if __name__ == "__main__":
+    name = "generate_csv.rb"
+    image_format = "jpg"
+    rename(name, image_format)
+    movedir(name)

@@ -18,7 +18,7 @@ class Scraper
     driver.navigate.to(@search_url)
 
     # 合計10スクロールする
-    10.times do 
+    1.times do 
       # 1スクロール分のビューを表示
       driver.find_elements(:class, 'iusc').last.location_once_scrolled_into_view
       # その中にあるiuscというクラスを持つやつを数える
@@ -83,12 +83,11 @@ if __FILE__ == $0
               # "chiba" => "千葉雄大",
               # "sakurai" => "櫻井翔",
               # "yoshizawa" => "吉沢亮",
-              # "suda" => "菅田将暉",
+              "suda" => "菅田将暉",
               # "mocomichi" => "速水もこみち",
               # "shiraishi" => "白石麻衣",
               # "ishihara" => "石原さとみ",
               # "nakajo" => "中条あやみ",
-              "uehara" => "上原亜衣",
               # "hashimoto" => "橋本環奈",
               # "hirose" => "広瀬すず",
             }

@@ -1,14 +1,8 @@
-# -*- coding: utf-8 -*-
-# import sys
 import os
-
-# import numpy as np
-# import pandas as pd
-# from PIL import Image
 from model import MyModel
 
-images_dir = "./train_all"
-inputs_dir = "./test/hashimoto"
+images_dir = "train_all"
+inputs_dir = "test/imada"
 categories = [name for name in os.listdir(images_dir) if name != ".DS_Store"]
 inputs = [name for name in os.listdir(inputs_dir) if name != ".DS_Store"]
 
