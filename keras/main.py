@@ -2,7 +2,7 @@ import os
 from model import MyModel
 
 images_dir = "train_all"
-inputs_dir = "test/imada"
+inputs_dir = "train_all/tom"
 categories = [name for name in os.listdir(images_dir) if name != ".DS_Store"]
 inputs = [name for name in os.listdir(inputs_dir) if name != ".DS_Store"]
 

@@ -3,6 +3,9 @@ import os
 
 
 def cutting(name, image_format, limit):
+    print(name)
+    print(image_format)
+    print(limit)
     # 先ほど集めてきた画像データのあるディレクトリ
     input_data_path = name + "/"
     # 切り抜いた画像の保存先ディレクトリ(予めディレクトリを作っておいてください)
@@ -16,11 +19,10 @@ def cutting(name, image_format, limit):
     # 収集した画像の枚数(任意で変更)
     image_count = limit
     # 顔検知に成功した数(デフォルトで0を指定)
-    face_detect_count = 0
+    face_detect_count = 1
 
     # 集めた画像データから顔が検知されたら、切り取り、保存する。
     for i in range(1, image_count):
-        print(input_data_path + name + "_" + str(i) + image_format)
         img = cv2.imread(input_data_path + name + "_" + str(i) + image_format)
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         face = faceCascade.detectMultiScale(
@@ -46,8 +48,10 @@ def cutting(name, image_format, limit):
                 h = rect[3]
                 cv2.imwrite(
                     save_path
+                    + str(i)
+                    + "_"
                     + name
-                    + "_cutted"
+                    + "_cutted_"
                     + str(face_detect_count)
                     + image_format,
                     img[y : y + h, x : x + w],
@@ -56,3 +60,10 @@ def cutting(name, image_format, limit):
                 print(i)
         else:
             print(name + str(i) + ":NoFace")
+
+
+if __name__ == "__main__":
+    name = "tom"
+    image_format = ".jpg"
+    limit = 500
+    cutting(name, image_format, limit)
