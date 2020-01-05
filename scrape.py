@@ -2,6 +2,7 @@ from google_images_download import google_images_download
 import os
 import rename
 import cutting
+import judge
 
 
 def fetch_image(params):
@@ -11,6 +12,7 @@ def fetch_image(params):
         "limit": params["limit"],
         "format": params["image_format"],
         "chromedriver": "chromedriver",
+        "--related_images": True,
         "output_directory": params["output_directory"],
         "no_directory": True,
     }
@@ -59,3 +61,4 @@ if __name__ == "__main__":
     name, image_format, limit = scrape()
     rename.rename(name, image_format)
     cutting.cutting(name, image_format, limit)
+    # judge.judge(name)

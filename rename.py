@@ -18,7 +18,7 @@ def movedir(name):
 
 
 if __name__ == "__main__":
-    name = "tom"
+    name = "daiki"
     image_format = ".jpg"
     rename(name, image_format)
     # movedir(name)

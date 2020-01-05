@@ -3,9 +3,6 @@ import os
 
 
 def cutting(name, image_format, limit):
-    print(name)
-    print(image_format)
-    print(limit)
     # 先ほど集めてきた画像データのあるディレクトリ
     input_data_path = name + "/"
     # 切り抜いた画像の保存先ディレクトリ(予めディレクトリを作っておいてください)
@@ -24,10 +21,13 @@ def cutting(name, image_format, limit):
     # 集めた画像データから顔が検知されたら、切り取り、保存する。
     for i in range(1, image_count):
         img = cv2.imread(input_data_path + name + "_" + str(i) + image_format)
+        if img is None:
+            continue
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         face = faceCascade.detectMultiScale(
-            gray, scaleFactor=1.11, minNeighbors=1, minSize=(120, 120)
+            gray, scaleFactor=1.11, minNeighbors=1, minSize=(60, 60)
         )
+        label = "a"
         # print(img)
         if len(face) > 0:
             for rect in face:
@@ -47,19 +47,28 @@ def cutting(name, image_format, limit):
                 w = rect[2]
                 h = rect[3]
                 cv2.imwrite(
-                    save_path
-                    + str(i)
-                    + "_"
-                    + name
-                    + "_cutted_"
-                    + str(face_detect_count)
-                    + image_format,
+                    save_path + str(i) + "_" + name + "_cutted_" + label + image_format,
                     img[y : y + h, x : x + w],
                 )
                 face_detect_count += 1
-                print(i)
+                label = getNewLabel(label)
         else:
             print(name + str(i) + ":NoFace")
+
+
+def getNewLabel(label):
+    newlabel = ""
+    for s in label:
+        # アスキーコードに変換
+        s = ord(s)
+        if 65 <= s and s <= 90:
+            s = s + 1
+        elif 97 <= s and s <= 122:
+            s = s + 1
+        # アスキーコードから文字を取得
+        s = chr(s)
+        newlabel += s
+    return newlabel
 
 
 if __name__ == "__main__":
@@ -67,3 +76,4 @@ if __name__ == "__main__":
     image_format = ".jpg"
     limit = 500
     cutting(name, image_format, limit)
+
