@@ -1,5 +1,8 @@
 /cutted
 /img
 /tensorflow/data
-/keras
+/keras/graph
+/keras/test
+/keras/train
+/keras/train_all
 /data
