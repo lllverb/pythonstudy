@@ -1,12 +1,7 @@
 # -*- coding: utf-8 -*-
-# import sys
 import os
 import gc
-
-# import glob
 import numpy as np
-
-# import pandas as pd
 import random
 import math
 import traceback
@@ -48,7 +43,6 @@ class MyModel:
                     )
                     train_data.append([data, i])
 
-            # シャッフル
             random.shuffle(train_data)
             X, Y = [], []
             for data in train_data:
@@ -64,18 +58,16 @@ class MyModel:
             )
             x_train, x_test, y_train, y_test = xy
 
-            # 正規化
             self.x_train = x_train.astype("float") / 256
             self.x_test = x_test.astype("float") / 256
             self.y_train = np_utils.to_categorical(y_train, len(self.sub_dir))
             self.y_test = np_utils.to_categorical(y_test, len(self.sub_dir))
 
-            # 学習モデルの保存
             model = self.create_model_from_shape(self.x_train.shape[1:])
             fit = model.fit(
                 self.x_train,
                 self.y_train,
-                batch_size=,
+                batch_size=64,
                 epochs=15,
                 validation_split=0.2,
             )
@@ -101,9 +93,6 @@ class MyModel:
         except Exception as e:
             print("Exception:", traceback.format_exc(), e.args)
 
-    # ------------------------------------
-    # 入力画像の予測
-    # ------------------------------------
     def predict_from_dir(self, dir):
         X = []
         files = [name for name in os.listdir(dir) if name != ".DS_Store"]
@@ -116,7 +105,6 @@ class MyModel:
         predictions = model.predict(X)
         return predictions
 
-    # 画像ファイルからデータを作成
     def create_data_from_image(self, file):
         img = Image.open(file)
         img = img.convert("RGB")
@@ -124,25 +112,20 @@ class MyModel:
         data = np.asarray(img)
         return data
 
-    # Shape から Model の作成
     def create_model_from_shape(self, shape):
-        # K=32, M=3, H=3
         model = Sequential()
         model.add(Conv2D(32, 3, 3, border_mode="same", input_shape=shape))
-
-        # K=64, M=3, H=3 調整
         model.add(Activation("relu"))
+
         model.add(MaxPooling2D(pool_size=(2, 2)))
         model.add(Dropout(0.25))
         model.add(Conv2D(64, 3, 3, border_mode="same"))
         model.add(Activation("relu"))
-        # K=64, M=3, H=3 調整
         model.add(Conv2D(64, 3, 3))
         model.add(MaxPooling2D(pool_size=(2, 2)))
         model.add(Dropout(0.25))
         model.add(Flatten())
         model.add(Dense(512))
-        # biases
         model.add(Activation("relu"))
         model.add(Dropout(0.5))
         model.add(Dense(len(self.sub_dir)))
