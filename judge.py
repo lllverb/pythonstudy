@@ -15,20 +15,19 @@ def judge(name):
 
     # 入力画像の予測値
     predictions = MyModel().predict_from_dir(inputs_dir)
-
     # 結果出力
     strcategory = ""
     for category in categories:
         strcategory += category.ljust(11, " ")
     nameIndex = categories.index(name)
     print(strcategory)
-
+    print(predictions[0])
     thePerson = []
     for i, input in enumerate(inputs):
         strprediction = input.ljust(28, " ")
         for prediction in predictions[i]:
-            strprediction += str(round(prediction, 3)).ljust(10, " ")
-        print(strprediction)
+            strprediction += str(round(prediction)).ljust(10, " ")
+        # print(strprediction)
         if predictions[i][nameIndex] == 1.0:
             number = re.sub("\\D", "", input)
             if number not in thePerson:
@@ -38,6 +37,7 @@ def judge(name):
 
     for person in people:
         person_number = re.sub("\\D", "", person)
+        # print(person_number)
         for p in thePerson:
             if p == person_number:
                 save_path = "data/" + name

@@ -75,8 +75,8 @@ class MyModel:
             fit = model.fit(
                 self.x_train,
                 self.y_train,
-                batch_size=32,
-                epochs=10,
+                batch_size=,
+                epochs=15,
                 validation_split=0.2,
             )
             model.save_weights(self.hdf5_file)
@@ -157,4 +157,3 @@ if __name__ == "__main__":
     m = MyModel()
     m.save_model()
     gc.collect()
-
