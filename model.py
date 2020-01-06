@@ -71,7 +71,7 @@ class Model:
                 self.x_train,
                 self.y_train,
                 batch_size=64,
-                epochs=8,
+                epochs=15,
                 validation_split=0.2,
             )
             model.save_weights(self.hdf5_file)

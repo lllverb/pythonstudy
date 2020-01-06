@@ -49,5 +49,5 @@ def judge(name):
 
 
 if __name__ == "__main__":
-    name = "suda"
+    name = "daiki"
     judge(name)

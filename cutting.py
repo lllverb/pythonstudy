@@ -25,7 +25,7 @@ def cutting(name, image_format, limit):
             continue
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         face = faceCascade.detectMultiScale(
-            gray, scaleFactor=1.11, minNeighbors=1, minSize=(60, 60)
+            gray, scaleFactor=1.11, minNeighbors=2, minSize=(60, 60)
         )
         label = "a"
         # print(img)
@@ -72,8 +72,8 @@ def getNewLabel(label):
 
 
 if __name__ == "__main__":
-    name = "tom"
+    # name = "d"
     image_format = ".jpg"
-    limit = 500
+    limit = 1000
     cutting(name, image_format, limit)
 
