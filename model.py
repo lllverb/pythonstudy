@@ -16,7 +16,6 @@ import matplotlib.pyplot as plt
 
 class Model:
     def __init__(self):
-        print(os.getcwd())
         self.images_dir = "keras/train_all"
         self.hdf5_file = "keras/Model.hdf5"
         self.sub_dir = [

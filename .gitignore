@@ -5,3 +5,6 @@
 /keras/train
 /keras/train_all
 /data
+/haarcascade_frontalface_default.xml
+/daiki
+/daiki_cutted

@@ -10,7 +10,7 @@ def cutting(name, image_format, limit):
     if not os.path.exists(save_path):
         os.mkdir(save_path)
     # OpenCVのデフォルトの分類器のpath。(https://github.com/opencv/opencv/blob/master/data/haarcascades/haarcascade_frontalface_default.xmlのファイルを使う)
-    cascade_path = "/usr/local/Cellar/opencv/4.1.2/share/opencv4/haarcascades/haarcascade_frontalface_default.xml"
+    cascade_path = "haarcascade_frontalface_default.xml"
     faceCascade = cv2.CascadeClassifier(cascade_path)
 
     # 収集した画像の枚数(任意で変更)
@@ -28,7 +28,6 @@ def cutting(name, image_format, limit):
             gray, scaleFactor=1.11, minNeighbors=3, minSize=(60, 60)
         )
         label = "a"
-        # print(img)
         if len(face) > 0:
             for rect in face:
                 # ///////////////////////////////
