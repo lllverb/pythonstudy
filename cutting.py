@@ -25,7 +25,7 @@ def cutting(name, image_format, limit):
             continue
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         face = faceCascade.detectMultiScale(
-            gray, scaleFactor=1.11, minNeighbors=2, minSize=(60, 60)
+            gray, scaleFactor=1.11, minNeighbors=3, minSize=(60, 60)
         )
         label = "a"
         # print(img)
