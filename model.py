@@ -14,11 +14,11 @@ from keras.utils import np_utils
 import matplotlib.pyplot as plt
 
 
-class MyModel:
+class Model:
     def __init__(self):
         print(os.getcwd())
         self.images_dir = "keras/train_all"
-        self.hdf5_file = "keras/mymodel.hdf5"
+        self.hdf5_file = "keras/Model.hdf5"
         self.sub_dir = [
             name for name in os.listdir(self.images_dir) if name != ".DS_Store"
         ]
@@ -71,7 +71,7 @@ class MyModel:
                 self.x_train,
                 self.y_train,
                 batch_size=64,
-                epochs=100,
+                epochs=8,
                 validation_split=0.2,
             )
             model.save_weights(self.hdf5_file)
@@ -134,7 +134,7 @@ class MyModel:
 
         # プーリング層の追加
         model.add(MaxPooling2D(pool_size=(2, 2)))
-        # ドロップアウト
+        # ドロップアウト。サンプルと同数値
         model.add(Dropout(0.25))
 
         # 三層目
@@ -150,18 +150,18 @@ class MyModel:
         # ドロップアウト
         model.add(Dropout(0.5))
 
-        # 五層目
-        model.add(Conv2D(128, 3, 3, border_mode="same"))
-        model.add(Activation("relu"))
+        # # 五層目
+        # model.add(Conv2D(128, 3, 3, border_mode="same"))
+        # model.add(Activation("relu"))
 
-        # 六層目
-        model.add(Conv2D(128, 3, 3, border_mode="same"))
-        model.add(Activation("relu"))
+        # # 六層目
+        # model.add(Conv2D(128, 3, 3, border_mode="same"))
+        # model.add(Activation("relu"))
 
-        # プーリング層
-        model.add(MaxPooling2D(pool_size=(2, 2)))
-        # ドロップアウト
-        model.add(Dropout(0.5))
+        # # プーリング層
+        # model.add(MaxPooling2D(pool_size=(2, 2)))
+        # # ドロップアウト
+        # model.add(Dropout(0.5))
 
         # 平坦化する
         model.add(Flatten())
@@ -172,7 +172,7 @@ class MyModel:
         # ドロップアウト
         model.add(Dropout(0.5))
 
-        # 分類の数を定義
+        # 分類の数
         model.add(Dense(len(self.sub_dir)))
         model.add(Activation("softmax"))
 
@@ -183,6 +183,6 @@ class MyModel:
 
 
 if __name__ == "__main__":
-    m = MyModel()
+    m = Model()
     m.save_model()
     gc.collect()

@@ -61,4 +61,4 @@ if __name__ == "__main__":
     name, image_format, limit = scrape()
     rename.rename(name, image_format)
     cutting.cutting(name, image_format, limit)
-    # judge.judge(name)
+    judge.judge(name)
