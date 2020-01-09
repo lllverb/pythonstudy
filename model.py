@@ -124,11 +124,11 @@ class Model:
 
         # 畳み込み層
         # 一層目
-        model.add(Conv2D(32, 3, 3, border_mode="same", input_shape=shape))
+        model.add(Conv2D(32, (3, 3), padding="same", input_shape=shape))
         model.add(Activation("relu"))
 
         # 二層目
-        model.add(Conv2D(32, 3, 3, border_mode="same"))
+        model.add(Conv2D(32, (3, 3), padding="same"))
         model.add(Activation("relu"))
 
         # プーリング層の追加
@@ -137,11 +137,11 @@ class Model:
         model.add(Dropout(0.25))
 
         # 三層目
-        model.add(Conv2D(64, 3, 3, border_mode="same"))
+        model.add(Conv2D(64, (3, 3), padding="same"))
         model.add(Activation("relu"))
 
         # 四層目
-        model.add(Conv2D(64, 3, 3, border_mode="same"))
+        model.add(Conv2D(64, (3, 3), padding="same"))
         model.add(Activation("relu"))
 
         # プーリング層
@@ -150,11 +150,11 @@ class Model:
         model.add(Dropout(0.5))
 
         # # 五層目
-        # model.add(Conv2D(128, 3, 3, border_mode="same"))
+        # model.add(Conv2D(128, (3, 3), padding="same"))
         # model.add(Activation("relu"))
 
         # # 六層目
-        # model.add(Conv2D(128, 3, 3, border_mode="same"))
+        # model.add(Conv2D(128, (3, 3), padding="same"))
         # model.add(Activation("relu"))
 
         # # プーリング層
